@@ -10,8 +10,8 @@ void display();
 void main()
 {
     do{
-        printf("the queue operations are:\n1.insert\n2.delete\n3.peek\n4.display\n")
-        printf("enter the choice(1-5):\n")
+        printf("the queue operations are:\n1.insert\n2.delete\n3.peek\n4.display\n");
+        printf("enter the choice(1-5):\n");
         scanf("%d",&choice);
         switch(choice)
         {
@@ -19,7 +19,7 @@ void main()
                     break;
             case 2:dequeue();
                     break;
-            case3:peek();
+            case 3:peek();
                     break;
             case 4:display();
                     break;
@@ -30,29 +30,39 @@ void main()
 }
 void enqueue()
 {
-    rear++;
-    front++;
+    
+   
+    
     if(rear==MAX-1)
     {
         printf("queue overflow\n");
     }
-    else
+    else 
     {
-        printf("enter element to be inserted:\n");
-        scanf("%d",&ele);
-        a[rear]=ele;
-        rear++;
+        if(front==-1)
+        {
+            front=0;
+
+            rear++;
+            printf("enter element to be inserted:\n");
+            scanf("%d",&ele);
+            a[rear]=ele;
+        } 
     
     }
 }
 void dequeue()
 {
-    if(rear==-1)
+    if(rear==-1||front>rear)
     {
         printf("queue underflow\n");
     }
     else{
         front++;
+        if(front>rear)
+        {
+            front=rear=-1;
+        }
     }
 }
 void peek()
@@ -78,7 +88,7 @@ void display()
     }
     else
     {
-        for(i=front;front<=rear;i++)
+        for(i=front;i<=rear;i++)
         {
             printf("%d",a[i]);
 
